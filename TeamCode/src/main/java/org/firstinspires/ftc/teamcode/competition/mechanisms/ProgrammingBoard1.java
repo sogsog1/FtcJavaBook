@@ -13,6 +13,13 @@ import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
+import org.firstinspires.ftc.teamcode.competition.mechanisms.tests.TestAnalogInput;
+import org.firstinspires.ftc.teamcode.competition.mechanisms.tests.TestDigitalChannel;
+import org.firstinspires.ftc.teamcode.competition.mechanisms.tests.TestItem;
+import org.firstinspires.ftc.teamcode.competition.mechanisms.tests.TestMotor;
+import org.firstinspires.ftc.teamcode.competition.mechanisms.tests.TestServo;
+
+import java.util.ArrayList;
 
 public class ProgrammingBoard1 {
     private DigitalChannel touchSensor;
@@ -76,5 +83,14 @@ public class ProgrammingBoard1 {
     }
     public double getHeading(AngleUnit angleUnit) {
         return imu.getRobotYawPitchRollAngles().getYaw(angleUnit);
+    }
+
+    public ArrayList<TestItem> getTests() {
+        ArrayList<TestItem> tests = new ArrayList<>();
+        tests.add(new TestMotor("PB Motor", 0.5, motor));
+        tests.add(new TestAnalogInput("PB Pot", pot, 0, 270));
+        tests.add(new TestDigitalChannel("PB Color Sensor", touchSensor));
+        tests.add(new TestServo("PB Servo", servo, 0.0, 0.5));
+        return tests;
     }
 }
